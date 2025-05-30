@@ -1,0 +1,53 @@
+.App-Students-Iframe {
+  width: 98%;
+  border: none;
+  /* border: 1px solid black; */
+  height: 640px;
+  margin: 14px;
+}
+
+.App-Students-Menu {
+  /* position: absolute;
+  left: -260px; */
+  overflow: auto;
+  width: 270px;
+  height: 640px;
+  margin: 0px;
+  background-color: #eeeeee;
+  /* transition: left .4s; */
+}
+
+.App-Students-Menu a {
+  text-decoration: none;
+}
+.App-Students-List {
+
+  /* background-color: white; */
+  margin: 0px;
+  padding: 0px;
+
+}
+
+.App-Students-List-R {
+
+  background-color: lightgreen;
+  margin: 0px;
+  padding: 0px;
+
+}
+
+.App-Students-List-New {
+
+  background-color: yellow;
+  margin: 0px;
+  padding: 0px;
+
+}
+
+.App-Students-List-Rv {
+
+  background-color: pink;
+  margin: 0px;
+  padding: 0px;
+
+}
