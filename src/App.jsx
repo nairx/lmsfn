@@ -13,7 +13,7 @@ import Admin from "./components/admin/Admin";
 import ShowUsers from "./components/admin/ShowUsers";
 import Layout from "./Layout";
 import Profile from "./components/user/Profile";
-import Message from "./components/user/Message";
+// import Message from "./components/user/Message";
 import Footer from "./components/footer/Footer";
 const PrivateRoute = ({ children, roles }) => {
   const { user } = useContext(AuthContext);
@@ -30,14 +30,14 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Login />} />
             <Route path="home" element={<Home />} />
-            <Route
+            {/* <Route
               path="message"
               element={
                 <PrivateRoute>
                   <Message />
                 </PrivateRoute>
               }
-            />
+            /> */}
             <Route path="register" element={<Register />} />
             <Route
               path="profile"
