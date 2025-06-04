@@ -30,7 +30,7 @@ export default function Register() {
           <p>
             <input
               className="w-full bg-white rounded-lg mt-5 p-1"
-              placeholder="Email address or roll number" required
+              placeholder="Roll number" required
               onChange={(e) => setUser({ ...user, email: e.target.value })}
             ></input>
           </p>

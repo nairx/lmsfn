@@ -41,7 +41,7 @@ export default function Login() {
           <p>
             <input
               className="w-full rounded-sm p-3 mb-3"
-              placeholder="Email address or username"
+              placeholder="Roll Number"
               type="text"
               required
               autoFocus
