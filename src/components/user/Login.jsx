@@ -16,11 +16,11 @@ export default function Login() {
       e.preventDefault();
       setMsg("Please wait...");
       const res = await axios.post(url, user);
-      if (res.status === 200) {
+      if (res.data.msg === "ok") {
         setUser(res.data);
         Navigate("/home");
       } else {
-        setMsg(res.data.message);
+        setMsg(res.data.msg);
       }
     } catch (err) {
       console.log(err);
