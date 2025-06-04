@@ -30,7 +30,7 @@ export default function Layout() {
           ) : (
             <>
               <Link to="/">Login</Link>
-              {/* <Link to="/register">Register</Link> */}
+              <Link to="/register">Register</Link>
             </>
           )}
         </div>

@@ -64,9 +64,9 @@ export default function Login() {
           </p>
         </form>
 
-        {/* <p>
+        <p className="mt-5">
           <Link to="/register">Create Account</Link>
-        </p> */}
+        </p>
       </div>
     </div>
   );
