@@ -16,6 +16,7 @@ export default function Login() {
       e.preventDefault();
       setMsg("Please wait...");
       const res = await axios.post(url, user);
+      console.log(res)
       if (res.data.msg === "ok") {
         setUser(res.data);
         Navigate("/home");
