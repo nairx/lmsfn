@@ -16,8 +16,8 @@ export default function Login() {
       e.preventDefault();
       setMsg("Please wait...");
       const res = await axios.post(url, user);
-      console.log(res)
-      if (res.data.msg === "ok") {
+      console.log(res);
+      if (res.data.token) {
         setUser(res.data);
         Navigate("/home");
       } else {
@@ -29,7 +29,6 @@ export default function Login() {
   };
   return (
     <div className="flex justify-evenly flex-wrap  w-full">
-   
       <div className="m-5 p-5">
         <h1 className="text-3xl mb-5 text-blue-950">Welcome back!</h1>
         <h2 className=" text-blue-950 text-xl">
