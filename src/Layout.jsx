@@ -12,7 +12,7 @@ export default function Layout() {
           LMS
         </Link> */}
         <h1 className="text-xl">LMS</h1>
-        <div className="space-x-4">
+        <div className="space-x-3">
           {user?.token ? (
             <>
               {/* <Link to="/courses">Courses</Link> */}
@@ -24,7 +24,7 @@ export default function Layout() {
                   {/* <Link to="/admin/courses/add">Add Course</Link> */}
                 </>
               )}
-
+              <Link to="message">Message</Link>
               <Link to="profile">Profile</Link>
             </>
           ) : (
@@ -36,7 +36,7 @@ export default function Layout() {
         </div>
       </nav>
       <div className="min-h-screen bg-gray-200">
-      <Outlet />
+        <Outlet />
       </div>
     </div>
   );

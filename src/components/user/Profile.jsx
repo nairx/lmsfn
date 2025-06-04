@@ -50,22 +50,7 @@ export default function Profile() {
     }
   };
 
-  const handleSend = async () => {
-    setMsg("loading");
-    const url = `${API}/api/users/${user.id}`;
-    await axios.patch(
-      url,
-      { message, updatedBy: user.role },
-      {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
-    setMsg("Message sent sucessfully");
-    fetchProfile();
-    setMessage("");
-  };
+  
 
   return (
     <div className="flex flex-wrap justify-center">
@@ -79,7 +64,7 @@ export default function Profile() {
         <hr />
 
         {msg === "loading" ? (
-          <div>Please wait...</div>
+          <div className="align-middle h-96 p-9">Please wait...</div>
         ) : (
           <>
             <p className="mt-5 bg-gray-100 p-3 rounded-lg">
@@ -128,42 +113,6 @@ export default function Profile() {
               >
                 Save changes
               </button>
-            </p>
-          </>
-        )}
-      </div>
-
-      <div className="bg-white p-5 w-96 m-5 rounded-3xl">
-        <div className="text-xl">Messaging</div>
-        <hr />
-        {msg === "loading" ? (
-          <div className="text-lg p-20 h-full mt-5 text-red-900">
-            Please wait...
-          </div>
-        ) : (
-          <>
-            <p className="mt-5 bg-gray-100 p-3 rounded-lg">
-              Last Message:<br></br>
-              <span>{data.message}</span>
-            </p>
-            <p className="mt-5 bg-gray-100 p-3 rounded-lg">
-              {/* Send new message:<br></br> */}
-              <input
-                className="w-full bg-white rounded-lg p-1"
-                maxLength={30}
-                defaultValue={message}
-                placeholder="Enter new message"
-                onChange={(e) => setMessage(e.target.value)}
-              />
-              <p className="mt-5">
-                <button
-                  className="bg-blue-900 font-bold text-white w-full p-1 rounded-lg"
-                  onClick={handleSend}
-                >
-                  Send message
-                </button>
-              </p>
-              {/* <Link to="/message">Send Message</Link> */}
             </p>
           </>
         )}
