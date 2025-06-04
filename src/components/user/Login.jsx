@@ -36,7 +36,7 @@ export default function Login() {
         </h2>
       </div>
       <div className="m-5 p-5 bg-white rounded-lg w-96">
-        <p className="text-red-700 text-lg">{msg}</p>
+        <p className="text-red-900 text-lg">{msg}</p>
         <form onSubmit={handleSubmit}>
           <p>
             <input
