@@ -29,8 +29,8 @@ export default function Login() {
     }
   };
   return (
-    <div className="flex justify-evenly flex-wrap  w-full">
-      <div className="m-5 p-5">
+    <div className="flex justify-evenly flex-wrap pt-9 w-full">
+      <div className="mt-5 p-8">
         <h1 className="text-3xl mb-5 text-blue-950">Welcome back!</h1>
         <h2 className=" text-blue-950 text-xl">
           Access your class and continue building awesome things.
