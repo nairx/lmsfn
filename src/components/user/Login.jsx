@@ -21,10 +21,10 @@ export default function Login() {
         setUser(res.data);
         Navigate("/home");
       } else {
-        setMsg(res.data.msg);
+        setMsg(res.data.message);
       }
     } catch (err) {
-      setMsg(res.data.message);
+      // setMsg(res.data.message);
       console.log(err);
     }
   };
