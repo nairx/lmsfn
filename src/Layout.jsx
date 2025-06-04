@@ -11,7 +11,7 @@ export default function Layout() {
         {/* <Link to="/home" className="font-bold text-xl">
           LMS
         </Link> */}
-        <h1 className="text-xl">LMS</h1>
+        <h1 className="text-xl">Praveen Nair</h1>
         <div className="space-x-3">
           {user?.token ? (
             <>
