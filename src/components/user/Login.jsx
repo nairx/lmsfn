@@ -17,7 +17,7 @@ export default function Login() {
       setMsg("Please wait...");
       const res = await axios.post(url, user);
       console.log(res);
-      if (res.data.active) {
+      if (res.status == 200) {
         setUser(res.data);
         Navigate("/home");
       } else {
