@@ -132,7 +132,7 @@ export default function Home() {
   };
   return (
     <div style={{ display: "flex" }}>
-      {user.role !== "user" && (
+      {user.role !== "user1" && (
         <div className="App-Students-Menu">
           {user.role !== "user" && batches.length > 1 && (
             <div>
