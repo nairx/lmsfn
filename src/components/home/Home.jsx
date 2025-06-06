@@ -149,7 +149,7 @@ export default function Home() {
               {/* <button style={{backgroundColor:'pink'}} onClick={resetScore}>Reset</button> */}
             </div>
           )}
-          {user.role !== "user" && batches.length === 1 && (
+          {user.role !== "user1" && batches.length === 1 && (
             <div onClick={showStudents} style={{ backgroundColor: "silver" }}>
               <strong>{batch}</strong>
             </div>
