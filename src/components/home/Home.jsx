@@ -34,7 +34,7 @@ export default function Home() {
   }
 
   const dispStudents = () => {
-    if (user.role !== "user1") {
+    if (user.role !== "user") {
       const batches = user.batch.split(",");
       if (batches.length === 1) {
         setBatch(data.batch);
@@ -132,9 +132,9 @@ export default function Home() {
   };
   return (
     <div style={{ display: "flex" }}>
-      {user.role !== "user1" && (
+      {user.role !== "user" && (
         <div className="App-Students-Menu">
-          {user.role !== "user1" && batches.length > 1 && (
+          {user.role !== "user" && batches.length > 1 && (
             <div>
               <select onChange={(e) => setBatch(e.target.value)}>
                 <option value="">-- Select Batch --</option>
@@ -149,7 +149,7 @@ export default function Home() {
               {/* <button style={{backgroundColor:'pink'}} onClick={resetScore}>Reset</button> */}
             </div>
           )}
-          {user.role !== "user1" && batches.length === 1 && (
+          {user.role !== "user" && batches.length === 1 && (
             <div onClick={showStudents} style={{ backgroundColor: "silver" }}>
               <strong>{batch}</strong>
             </div>
