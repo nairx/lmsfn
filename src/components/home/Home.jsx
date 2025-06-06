@@ -34,7 +34,7 @@ export default function Home() {
   }
 
   const dispStudents = () => {
-    if (user.role !== "user") {
+    if (user.role !== "user1") {
       const batches = user.batch.split(",");
       if (batches.length === 1) {
         setBatch(data.batch);
