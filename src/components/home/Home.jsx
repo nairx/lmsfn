@@ -134,7 +134,7 @@ export default function Home() {
     <div style={{ display: "flex" }}>
       {user.role !== "user1" && (
         <div className="App-Students-Menu">
-          {user.role !== "user" && batches.length > 1 && (
+          {user.role !== "user1" && batches.length > 1 && (
             <div>
               <select onChange={(e) => setBatch(e.target.value)}>
                 <option value="">-- Select Batch --</option>
