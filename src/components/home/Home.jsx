@@ -34,13 +34,15 @@ export default function Home() {
   }
 
   const dispStudents = () => {
-    if (user.role !== "user") {
+    if (user.role !== "user1") {
       const batches = user.batch.split(",");
       if (batches.length === 1) {
-        setBatch(data.batch);
+        setBatch(user.batch);
       }
+      // user.role==="user" && setBatch(user.batch)
       setBatches(batches);
     }
+    showStudents();
     // const url = `${API}/api/users/batch/${batch}`;
     // fetch(url).then((res) =>
     //   res.json().then((data) => {
@@ -50,7 +52,7 @@ export default function Home() {
   };
 
   const showStudents = () => {
-    // const url = `/api/courses/students/${batch}`;
+    // const url = `${API}/api/users/batch/Mu25a`;
     const url = `${API}/api/users/batch/${batch}`;
     fetch(url, {
       headers: {
@@ -69,11 +71,11 @@ export default function Home() {
   useEffect(() => {
     // console.log(user)
     dispStudents();
-  }, []);
-
-  useEffect(() => {
-    batch === "" ? setStudents(null) : showStudents();
   }, [batch]);
+
+  // useEffect(() => {
+  //   batch === "" ? setStudents(null) : showStudents();
+  // }, [batch]);
 
   // useEffect(() => {
   //   batchEmail !== null &&
@@ -84,18 +86,20 @@ export default function Home() {
 
   const handleClick = async (index, id) => {
     // studentRef.current[index].style.backgroundColor = "pink";
-    const url = `${API}/api/users/${id}`;
-    await axios.patch(
-      url,
-      { message: "Reviewing", updatedBy: user.role },
-      {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
-    // setError(new Date());
-    showStudents();
+    if (user.role === "admin") {
+      const url = `${API}/api/users/${id}`;
+      await axios.patch(
+        url,
+        { message: "Reviewing", updatedBy: user.role },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      // setError(new Date());
+      showStudents();
+    }
   };
   // const addStudent = async () => {
   //   setStudent({ ...student, batchId: data._id });
@@ -132,7 +136,7 @@ export default function Home() {
   };
   return (
     <div style={{ display: "flex" }}>
-      {user.role !== "user" && (
+      {user.role !== "user1" && (
         <div className="App-Students-Menu">
           {user.role !== "user" && batches.length > 1 && (
             <div>
@@ -149,7 +153,7 @@ export default function Home() {
               {/* <button style={{backgroundColor:'pink'}} onClick={resetScore}>Reset</button> */}
             </div>
           )}
-          {user.role !== "user" && batches.length === 1 && (
+          {user.role !== "user1" && batches.length === 1 && (
             <div onClick={showStudents} style={{ backgroundColor: "silver" }}>
               <strong>{batch}</strong>
             </div>
@@ -166,57 +170,62 @@ export default function Home() {
             </a>
 
             {students &&
-              students.map((value, index) => (
-                <div
-                  key={index}
-                  // className={
-                  //   LastUpdated(value.updatedAt) < 20 &&
-                  //   value.message === "Reviewed" && value.updatedBy !== "user"
-                  //     ? "App-Students-List-R"
-                  //     : "App-Students-List"
-                  // }
-                  className={
-                    LastUpdated(value.lastGraded) < 14 &&
-                    value.message === "Reviewed" &&
-                    value.updatedBy !== "user"
-                      ? "App-Students-List-R"
-                      : LastUpdated(value.updatedAt) < 14 &&
-                        value.updatedBy === "user"
-                      ? "App-Students-List-New"
-                      : value.message === "Reviewing" &&
+              students.map(
+                (value, index) =>
+                  (user.role !== "user" || value.visibility !== "private") && (
+                    <div
+                      key={index}
+                      // className={
+                      //   LastUpdated(value.updatedAt) < 20 &&
+                      //   value.message === "Reviewed" && value.updatedBy !== "user"
+                      //     ? "App-Students-List-R"
+                      //     : "App-Students-List"
+                      // }
+                      className={
+                        LastUpdated(value.lastGraded) < 10 &&
+                        value.message === "Reviewed" &&
                         value.updatedBy !== "user"
-                      ? "App-Students-List-Rv"
-                      : "App-Students-List"
-                  }
-                  ref={(el) => (studentRef.current[index] = el)}
-                >
-                  {index + 1}.
-                  <abbr title={value.message}>
-                    <a
-                      onClick={() => handleClick(index, value._id)}
-                      href={`https://${value.ghUser}.github.io`}
-                      target="frm"
+                          ? "App-Students-List-R"
+                          : LastUpdated(value.updatedAt) < 10 &&
+                            value.updatedBy === "user"
+                          ? "App-Students-List-New"
+                          : LastUpdated(value.updatedAt) < 10 && value.message === "Reviewing" &&
+                            value.updatedBy !== "user"
+                          ? "App-Students-List-Rv"
+                          : "App-Students-List"
+                      }
+                      ref={(el) => (studentRef.current[index] = el)}
                     >
-                      {/* {toTitleCase(value.name)} */}
-                      {value.name}
-                    </a>
-                  </abbr>
-                  |
-                  <a
-                    href={`https://github.com/${value.ghUser}`}
-                    target="_blank"
-                  >
-                    GH
-                  </a>
-                  {/* {Datetime(value.updatedAt)} */}
-                  {/* |<strong>{value.score}</strong> */}
-                  {/* <LastUpdate dt={value.updatedAt} /> */}
-                  {/* <LastUpdate dt={value.lastGraded} />m| */}
-                  {user.role === "admin" && (
-                    <button onClick={() => updateScore(value._id)}>+</button>
-                  )}
-                </div>
-              ))}
+                      {index + 1}.
+                      <abbr title={value.message}>
+                        <a
+                          onClick={() => handleClick(index, value._id)}
+                          href={`https://${value.ghUser}.github.io`}
+                          target="frm"
+                        >
+                          {/* {toTitleCase(value.name)} */}
+                          {value.name}
+                        </a>
+                      </abbr>
+                      |
+                      <a
+                        href={`https://github.com/${value.ghUser}/${value.ghUser}.github.io`}
+                        target="_blank"
+                      >
+                        GH
+                      </a>
+                      {/* {Datetime(value.updatedAt)} */}
+                      {/* |<strong>{value.score}</strong> */}
+                      {/* <LastUpdate dt={value.updatedAt} /> */}
+                      {/* <LastUpdate dt={value.lastGraded} />m| */}
+                      {user.role === "admin" && (
+                        <button onClick={() => updateScore(value._id)}>
+                          +
+                        </button>
+                      )}
+                    </div>
+                  )
+              )}
           </div>
         </div>
       )}

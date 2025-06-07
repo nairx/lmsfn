@@ -24,7 +24,7 @@ export default function Login() {
         setMsg(res.data.message);
       }
     } catch (err) {
-      // setMsg(res.data.message);
+      setMsg(res.data.message);
       console.log(err);
     }
   };
