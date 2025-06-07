@@ -155,7 +155,7 @@ export default function Home() {
           )}
           {user.role !== "user1" && batches.length === 1 && (
             <div onClick={showStudents} style={{ backgroundColor: "silver" }}>
-              <strong>{batch}</strong>
+              <strong>Batch: {batch}</strong>
             </div>
           )}
 
