@@ -106,7 +106,7 @@ export default function Profile() {
                 onChange={(e) => setUser({ ...user, ghUser: e.target.value })}
               />
             </p>
-            <p className="mt-5 bg-gray-100 p-3 rounded-lg">
+            {/* <p className="mt-5 bg-gray-100 p-3 rounded-lg">
               <span>Visibility:</span>
               <br></br>
               <input
@@ -115,7 +115,7 @@ export default function Profile() {
                 defaultValue={data.visibility}
                 onChange={(e) => setUser({ ...user, visibility: e.target.value })}
               />
-            </p>
+            </p> */}
             <p className="mt-5">
               <button
                 className="bg-blue-900 font-bold text-white w-full p-1 rounded-lg"
