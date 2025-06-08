@@ -34,7 +34,7 @@ export default function Home() {
   }
 
   const dispStudents = () => {
-    if (user.role !== "user1") {
+    if (user.role !== "user") {
       const batches = user.batch.split(",");
       if (batches.length === 1) {
         setBatch(user.batch);
@@ -42,7 +42,7 @@ export default function Home() {
       // user.role==="user" && setBatch(user.batch)
       setBatches(batches);
     }
-    showStudents();
+    // showStudents();
     // const url = `${API}/api/users/batch/${batch}`;
     // fetch(url).then((res) =>
     //   res.json().then((data) => {
@@ -69,13 +69,12 @@ export default function Home() {
     );
   };
   useEffect(() => {
-    // console.log(user)
     dispStudents();
   }, [batch]);
 
-  // useEffect(() => {
-  //   batch === "" ? setStudents(null) : showStudents();
-  // }, [batch]);
+  useEffect(() => {
+    batch === "" ? setStudents(null) : showStudents();
+  }, [batch]);
 
   // useEffect(() => {
   //   batchEmail !== null &&
@@ -136,7 +135,7 @@ export default function Home() {
   };
   return (
     <div style={{ display: "flex" }}>
-      {user.role !== "user1" && (
+      {user.role !== "user" && (
         <div className="App-Students-Menu">
           {user.role !== "user" && batches.length > 1 && (
             <div>
@@ -153,7 +152,7 @@ export default function Home() {
               {/* <button style={{backgroundColor:'pink'}} onClick={resetScore}>Reset</button> */}
             </div>
           )}
-          {user.role !== "user1" && batches.length === 1 && (
+          {user.role !== "user" && batches.length === 1 && (
             <div onClick={showStudents} style={{ backgroundColor: "silver" }}>
               <strong>Batch: {batch}</strong>
             </div>
