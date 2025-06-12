@@ -70,6 +70,21 @@ export default function ShowUsers() {
     }
   };
 
+  const deleteUser = async (id) => {
+    try {
+      const url = `${API}/api/users/${id}`;
+      const res = await axios.delete(url, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      //setMsg("Data updated successfully - ");
+      fetchUsers();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   // useEffect(() => fetchUsers(), []);
   return (
     <div className="m-5 bg-white">
@@ -206,6 +221,12 @@ export default function ShowUsers() {
                 onClick={() => updateUser(user._id)}
               >
                 Update
+              </button>
+              <button
+                className="m-1 p-1 text-white rounded-sm bg-green-700"
+                onClick={() => deleteUser(user._id)}
+              >
+                Delete
               </button>
             </li>
           ))}
