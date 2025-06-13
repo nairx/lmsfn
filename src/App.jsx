@@ -18,7 +18,7 @@ import Footer from "./components/footer/Footer";
 const PrivateRoute = ({ children, roles }) => {
   const { user } = useContext(AuthContext);
   if (!user) return <Navigate to="/" />;
-  if (roles && !roles.includes(user.role)) return <Navigate to="/home" />;
+  if (roles && !roles.includes(user.role)) return <Navigate to="/" />;
   return children;
 };
 
@@ -29,7 +29,16 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Login />} />
-            <Route path="home" element={<Home />} />
+
+            <Route
+              path="home"
+              element={
+                <PrivateRoute>
+                  <Home />
+                </PrivateRoute>
+              }
+            />
+
             <Route
               path="message"
               element={
@@ -60,7 +69,7 @@ function App() {
             </Route>
           </Route>
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </AuthProvider>
   );
