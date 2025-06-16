@@ -55,6 +55,22 @@ export default function ShowUsers() {
         .then((data) => setUsers(data))
         .catch((err) => console.log(err));
   };
+
+  const toggleActive = async (id,active) => {
+try {
+      const url = `${API}/api/users/${id}`;
+      const res = await axios.patch(url, {active:!active}, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      //setMsg("Data updated successfully - ");
+      fetchUsers();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const updateUser = async (id) => {
     try {
       const url = `${API}/api/users/${id}`;
@@ -174,6 +190,14 @@ export default function ShowUsers() {
               />
 
               <input
+                type="text"
+                defaultValue={user.name}
+                onChange={(e) =>
+                  setUserObj({ ...userObj, name: e.target.value })
+                }
+              />
+
+              <input
                 type="password"
                 placeholder="New Password"
                 onChange={(e) =>
@@ -197,13 +221,13 @@ export default function ShowUsers() {
                 }
               />
 
-              <input
+              {/* <input
                 type="text"
                 defaultValue={user.active}
                 onChange={(e) =>
                   setUserObj({ ...userObj, active: e.target.value })
                 }
-              />
+              /> */}
               {/* &nbsp;|&nbsp;
               {user.ghUser}
               &nbsp;|&nbsp;
@@ -213,9 +237,9 @@ export default function ShowUsers() {
               {/* &nbsp;|&nbsp;
               {user.updatedAt} */}
 
-              {/* <button className='m-1 p-1 border-1 border-green-500 rounded-sm' onClick={() => updateUser(user._id, user.active)}>
+              <button className='m-1 p-1 border-1 bg-green-700 text-white rounded-sm' onClick={() => toggleActive(user._id, user.active)}>
                 {user.active ? "Deactivate" : "Activate"}
-              </button> */}
+              </button>
               <button
                 className="m-1 p-1 text-white rounded-sm bg-green-700"
                 onClick={() => updateUser(user._id)}
