@@ -11,7 +11,6 @@ export default function Register() {
   const addUser = async (e) => {
     e.preventDefault()
     const url = `${API}/api/users/register/`;
-    await setUser({...user,batch:"lpu25a"})
     const res = await axios.post(url, user);
     setUser(res.data);
     Navigate("/");
@@ -21,7 +20,7 @@ export default function Register() {
       <div className="mt-5 bg-gray-100 p-3 w-96 rounded-lg">
         <h2 className="text-2xl">Create Account</h2>
         <form onSubmit={addUser}>
-          <p>
+          {/* <p>
             <input
               className="w-full bg-white rounded-lg mt-5 p-1"
               type="text"
@@ -29,7 +28,7 @@ export default function Register() {
               placeholder="Batch" disabled
               // onChange={(e) => setUser({ ...user, batch: e.target.value })}
             ></input>
-          </p>
+          </p> */}
           <p>
             <input
                className="w-full bg-white rounded-lg mt-5 p-1"
